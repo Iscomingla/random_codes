@@ -1,0 +1,98 @@
+html, body {
+	font-family: -apple-system, system-ui, Helvetica, Arial, sans-serif;
+}
+
+body {
+	background-color: #302e2b;
+}
+
+#load {
+	background-color: #282523;
+	padding: 1.5rem;
+}
+
+#profile {
+	padding: 0.75rem;
+}
+
+#profileheader {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+}
+
+#names {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+#names > #name {
+	color: white;
+	font-size: 1.5rem;
+}
+
+#names > #name > #title {
+    background-color: #79262b;
+    font-size: 1rem;
+    padding: 0 3px;
+    margin: 0 4px 0 0;
+}
+
+#names > #username {
+	color: gray;
+	font-size: 1.2rem;
+}
+
+#names > #otherinfos {
+	color: white;
+	font-size: 1.1rem;
+}
+
+#avatar {
+	height: 5rem;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#gamesheader {
+	color: #cfc8f4;
+}
+
+#games {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 15px
+}
+
+.game {
+	display: flex;
+	flex-direction: column;
+}
+
+.game > a > .endgame {
+	height: 18rem;
+	width: 18rem;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.game > .gameplayer > .elorating {
+	color: gray;
+}
+
+.game > .gameplayer {
+	color: white;
+}
+
+.winner {
+	font-weight: bold;
+}

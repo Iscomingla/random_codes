@@ -48,7 +48,10 @@ async function injectUserProfile() {
 	const urlParams = new URLSearchParams(window.location.search);
 	const playerName = urlParams.get('player') ?? "chesscom";
 	
-	try {document.body.removeChild(document.getElementById("profile"));document.body.removeChild(document.getElementById("games"));} catch {};
+	try {
+		document.body.removeChild(document.getElementById("profile"));
+		document.body.removeChild(document.getElementById("games"));
+	} catch {};
 	
 	const profileDiv = document.createElement('div');
 	profileDiv.setAttribute('id', "profile");
@@ -56,7 +59,7 @@ async function injectUserProfile() {
 
 	const gamesheader = document.createElement('h2');
 	gamesheader.setAttribute('id', "gamesheader");
-	gamesheader.textContent = "Games of the month";
+	gamesheader.textContent = "Games this month";
 	document.body.appendChild(gamesheader);
 
 	const gamesDiv = document.createElement('div');

@@ -1,5 +1,6 @@
 const customFlags = {XE: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", XS: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", XW: "🏴󠁧󠁢󠁷󠁬󠁳󠁿", XK: "🇽🇰", XP: "🇵🇸", XX: "🌐", XA: "🇮🇨", XB: "🏴", XG: "🏴", XC: "🏴"};
-  
+const coaches = ["coach-david", "coach-sloane", "coach-magnus", "coach-levy", "coach-calvin", "coach-anna", "coach-ruben", "coach-judit", "coach-drwolf", "coach-mittens", "coach-hikaru", "coach-canty", "coach-vishy", "coach-tania", "coach-danny", "coach-botez", "coach-ben", "coach-mae", "coach-dante", "coach-nadia"];
+
 function getFlagEmoji(code) {
 	if (customFlags[code]) return customFlags[code];
 	const chars = code.toUpperCase().split("").map(c => 127397 + c.charCodeAt());
@@ -22,26 +23,6 @@ function timeAgo(timestamp) {
 	} else {
 		return `${years} year${years !== 1 ? 's' : ''} ago`;
 	}
-}
-
-function parsePGN(PGN) {
-	let wip = PGN.replace("\\\"", "\"").split("\n");
-	let out = [{}];
-	wip.forEach((item) => {
-		item = item.trim();
-		if (item.startsWith("[") && item.endsWith("]")) {
-			item = item.replace("[", "").replace("]", "").split(" ");
-			const label = item.shift().toLowerCase();
-			item = item.join(" ").split("");
-			item.shift();
-			item.pop();
-			out[0][label] = item.join("").toLowerCase();
-		}
-		else {
-			out.push(item);
-		}
-	});
-	return out.filter(item => item);
 }
 
 async function injectUserProfile() {
@@ -98,13 +79,13 @@ function buildProfile(profile) {
 	`;
 }
 
-function buildGames(games, username) {
+function buildGames(games) {
 	let out = "";
 	for (const game of games) {
 		out = out + `
 		<div class="game">
 			<span class="gameplayer">${game.black.result === "win" ? `<i class="fa-solid fa-crown"></i> <span class="winner">${game.black.username}</span>` : game.black.username} <span class="elorating">${game.black.rating}</span></span>
-			<a href="${game.url}"><img class="endgame" src="https://chess-board.fly.dev/?fen=${encodeURIComponent(game.fen)}&size=500&theme=green"></a>
+			<a href="${[game.white.username.toLowerCase(), game.black.username.toLowerCase()].some(item => coaches.includes(item)) ? "" : game.url}"><img class="endgame" src="https://chess-board.fly.dev/?fen=${encodeURIComponent(game.fen)}&size=500&theme=green"></a>
 			<span class="gameplayer">${game.white.result === "win" ? `<i class="fa-solid fa-crown"></i> <span class="winner">${game.white.username}</span>` : game.white.username} <span class="elorating">${game.white.rating}</span></span>
 		</div>
 		`
